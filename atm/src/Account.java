@@ -41,4 +41,7 @@ public class Account {
         System.out.printf("Balance: %seur\n", balance);
     }
 
+    public double getBalance() {
+        return balance;
+    }
 }
