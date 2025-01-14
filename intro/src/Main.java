@@ -30,8 +30,17 @@ public class Main {
         String subtext = text.substring(2, 10);
         System.out.println(subtext);
 
-        String no = " LT   123432  ";
-        System.out.println(no.trim());
+        String no = " LT123432  ";
+        if(no.trim().equals("LT123432")) {
+            System.out.println("Access granted");
+        } else {
+            System.out.println("Access denied");
+        }
+
+        System.out.println(
+                no.trim().equals("LT123432") ? "Access granted" : "Access denied");
+
+
 
 
 
