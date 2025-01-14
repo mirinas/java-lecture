@@ -6,7 +6,9 @@ public class Account {
 
     private String fullName;
     private String pin;
-    private double balance = 0;
+
+    private int wholeBalance = 0;
+    private int cents = 0;
 
     public Account(String fullName, String pin) {
         this.fullName = fullName;
@@ -18,30 +20,38 @@ public class Account {
 
 
     public boolean withdraw(double amount) {
-        if(amount > balance || amount < 0) {
+        if(amount > getBalance() || amount < 0) {
             return false;
         }
-        balance -= amount;
+        // balance -= amount;
+        setBalance(getBalance() - amount);
         return true;
     }
 
 
     public double deposit(double amount) {
-        if(amount < 0) return balance;
+        if(amount < 0) return getBalance();
 
 //        balance = balance + amount;
-        balance += amount;
-        return balance;
+        setBalance(getBalance() + amount);
+        return getBalance();
     }
 
 
     public void print() {
         System.out.println("------------------");
         System.out.printf("%s - %s\n", fullName, accNumber);
-        System.out.printf("Balance: %seur\n", balance);
+        System.out.printf("Balance: %seur\n", getBalance());
     }
 
+
     public double getBalance() {
-        return balance;
+        return (double) wholeBalance + (double) cents / 100;
+    }
+
+
+    private void setBalance(double amount) {
+        wholeBalance = (int) amount;
+        cents = (int) (amount * 100 - wholeBalance * 100);
     }
 }

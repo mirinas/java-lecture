@@ -8,7 +8,7 @@ public class Main {
 
 
         Scanner s = new Scanner(System.in);
-        System.out.println("Enter a command:");
+        System.out.println("Enter a command: deposit, withdraw, print, quit");
         while(true) {
 
             String cmd = s.next();
