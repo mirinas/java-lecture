@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
 
         Account acc1 = new Account("Augustas", "abcd");
         Account acc2 = new Account("Petras", "xyz");
@@ -11,19 +12,27 @@ public class Main {
         accounts.add(acc1);
         accounts.add(acc2);
 
-
-        Scanner s = new Scanner(System.in);
-        System.out.println("Enter a command: deposit, withdraw, print, quit");
-
         Account selectedAcc = null;
+        System.out.println("Login to an account: 0-" + (accounts.size() - 1));
+        int index = s.nextInt();
+        selectedAcc = accounts.get(index);
+        selectedAcc.print();
+
+        System.out.println("Enter a command: deposit, withdraw, print, quit");
         while(true) {
 
             String cmd = s.next();
             switch (cmd) {
                 case "login" -> {
-                    int index = s.nextInt();
-                    selectedAcc = accounts.get(index);
+                    int i = s.nextInt();
+                    selectedAcc = accounts.get(i);
                     selectedAcc.print();
+                }
+                case "register" -> {
+                    String name = s.next();
+                    String pin = s.next();
+
+
                 }
                 case "deposit" -> {
                     double amount = s.nextDouble();
