@@ -19,6 +19,11 @@ public class Account {
     }
 
 
+    public boolean login(String pin) {
+        return pin.trim().equals(this.pin.trim());
+    }
+
+
     public boolean withdraw(double amount) {
         if(amount > getBalance() || amount < 0) {
             return false;
@@ -54,4 +59,10 @@ public class Account {
         wholeBalance = (int) amount;
         cents = (int) (amount * 100 - wholeBalance * 100);
     }
+
+    public String getAccNumber() {
+        return accNumber;
+    }
+
+
 }
