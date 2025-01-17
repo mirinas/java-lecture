@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -61,17 +62,28 @@ public class Main {
                     accounts.put(newAcc.getAccNumber(), newAcc);
                 }
                 case "deposit" -> {
-                    double amount = s.nextDouble();
-                    double newBalance = selectedAcc.deposit(amount);
-                    System.out.println("Your new balance: " + newBalance + "eur");
+
+                    try {
+                        double amount = s.nextDouble();
+                        double newBalance = selectedAcc.deposit(amount);
+                        System.out.println("Your new balance: " + newBalance + "eur");
+
+                    } catch (InputMismatchException e) {
+                        System.err.println("Deposit amount must be a number");
+                    }
+
                 }
                 case "withdraw" -> {
-                    double amount = s.nextDouble();
+                    try {
+                        double amount = s.nextDouble();
 
-                    if(selectedAcc.withdraw(amount)) {
-                        System.out.println("Your new balance: " + selectedAcc.getBalance() + "eur");
-                    } else {
-                        System.err.println("Insufficient funds!");
+                        if (selectedAcc.withdraw(amount)) {
+                            System.out.println("Your new balance: " + selectedAcc.getBalance() + "eur");
+                        } else {
+                            System.err.println("Insufficient funds!");
+                        }
+                    } catch (InputMismatchException e) {
+                        System.err.println("Deposit amount must be a number");
                     }
                 }
                 case "print" -> selectedAcc.print();
@@ -79,7 +91,7 @@ public class Main {
                     System.out.println("Bye bye!");
                     return;
                 }
-                default -> System.err.println("Invalid command. Available: quit");
+//                default -> System.err.println("Invalid command. Available: quit");
             }
         }
 
